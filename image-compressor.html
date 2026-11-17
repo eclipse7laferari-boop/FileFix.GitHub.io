@@ -1,0 +1,407 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Compress images online for free with FileFix.">
+
+    <meta name="theme-color" content="#ffffff">
+
+    <title>Image Compressor - FileFix</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+        <div class="container header-container">
+
+            <a href="index.html" class="logo">
+                File<span>Fix</span>
+            </a>
+
+            <nav class="navigation">
+                <a href="index.html#pdf-tools">PDF Tools</a>
+                <a href="index.html#image-tools">Image Tools</a>
+                <a href="index.html#about">About</a>
+            </nav>
+
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Switch theme"
+                aria-pressed="false"
+            >
+                <span class="theme-toggle__scene">
+                    <span class="theme-toggle__sun">☀</span>
+                    <span class="theme-toggle__cloud">☁</span>
+                    <span class="theme-toggle__stars">✦ · ✧</span>
+                    <span class="theme-toggle__moon">☾</span>
+
+                    <span class="theme-toggle__thumb">
+                        <span class="thumb-sun">☀</span>
+                        <span class="thumb-moon">☾</span>
+                    </span>
+                </span>
+            </button>
+
+            <button class="theme-auto" id="themeAuto" type="button">
+                Auto
+            </button>
+
+            <button class="menu-button" aria-label="Open navigation menu">
+                ☰
+            </button>
+
+        </div>
+    </header>
+
+
+    <!-- MAIN -->
+
+    <main>
+
+        <section class="tools-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span>IMAGE TOOLS</span>
+
+                    <h2>Image Compressor</h2>
+
+                    <p>
+                        Compress your images quickly and easily.
+                    </p>
+
+                </div>
+
+
+                <!-- COMPRESSOR WILL BE BUILT HERE -->
+
+                <div class="compressor-container">
+
+                    <!-- UPLOAD AREA -->
+
+                    <div class="upload-box" id="uploadBox">
+
+                        <div class="upload-icon">🖼️</div>
+
+                        <h3>Drop your image here</h3>
+
+                        <p>or choose a file from your device</p>
+
+                        <button class="upload-button" id="uploadButton" type="button">
+                            Choose Image
+                        </button>
+
+                        <input
+                            type="file"
+                            id="imageInput"
+                            accept="image/jpeg,image/png,image/webp"
+                            hidden
+                        >
+
+                        <span class="upload-formats">
+                            Supported formats: JPG, PNG, WEBP
+                        </span>
+
+                    </div>
+
+
+                    <!-- IMAGE INFORMATION -->
+
+                    <div class="image-information" id="imageInformation" hidden>
+
+                        <h3>Your image</h3>
+
+                        <div class="image-preview">
+                            <img id="imagePreview" alt="Uploaded image preview">
+                        </div>
+
+                        <div class="file-details">
+
+                            <p>
+                                File name:
+                                <strong id="fileName">-</strong>
+                            </p>
+
+                            <p>
+                                Original size:
+                                <strong id="originalSize">-</strong>
+                            </p>
+
+                        </div>
+
+                        <button class="remove-image" id="removeImage" type="button">
+                            Remove image
+                        </button>
+
+                        <!-- COMPRESSION SETTINGS -->
+
+                        <div class="compression-settings" id="compressionSettings">
+
+                            <h3>Compression settings</h3>
+
+                            <div class="quality-header">
+                                <label for="qualityRange">Image quality</label>
+                                <strong id="qualityValue">75%</strong>
+                            </div>
+
+                            <input
+                                type="range"
+                                id="qualityRange"
+                                min="10"
+                                max="100"
+                                value="75"
+                                step="5"
+                            >
+
+                            <p class="quality-description">
+                                Lower quality means a smaller file size.
+                            </p>
+
+                            <button class="compress-button" id="compressButton" type="button">
+                                Compress Image
+                            </button>
+
+                            <div class="compression-progress" id="compressionProgress" hidden>
+
+                                <div class="progress-info">
+                                    <span id="progressText">Compressing image...</span>
+                                    <span class="progress-spinner"></span>
+                                </div>
+
+                                <div class="progress-track">
+                                    <div class="progress-fill"></div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- COMPRESSION RESULT -->
+
+                        <div class="toast-message" id="toastMessage" role="status" aria-live="polite">
+                            <span class="toast-icon" id="toastIcon">✓</span>
+                            <span class="toast-text" id="toastText">Image compressed successfully!</span>
+                        </div>
+
+                        <div class="compression-result" id="compressionResult" hidden>
+
+                            <h3>Compression complete!</h3>
+
+                            <div class="comparison-slider" id="comparisonSlider">
+
+                                <img
+                                    id="originalPreview"
+                                    class="comparison-original"
+                                    alt="Original image"
+                                >
+
+                                <div class="comparison-after" id="comparisonAfter">
+                                    <img
+                                        id="compressedPreview"
+                                        alt="Compressed image"
+                                    >
+                                </div>
+
+                                <div class="comparison-divider" id="comparisonDivider">
+                                    <span>↔️</span>
+                                </div>
+
+                                <input
+                                    type="range"
+                                    id="comparisonRange"
+                                    min="0"
+                                    max="100"
+                                    value="50"
+                                    aria-label="Compare original and compressed image"
+                                >
+
+                                <span class="comparison-label comparison-label-before">
+                                    Original
+                                </span>
+
+                                <span class="comparison-label comparison-label-after">
+                                    Compressed
+                                </span>
+
+                            </div>
+
+                            <div class="result-comparison">
+
+                                <div class="result-item">
+                                    <span>Original size</span>
+                                    <strong id="resultOriginalSize">-</strong>
+                                </div>
+
+                                <div class="result-item">
+                                    <span>Compressed size</span>
+                                    <strong id="resultCompressedSize">-</strong>
+                                </div>
+
+                                <div class="result-item">
+                                    <span>Space saved</span>
+                                    <strong id="resultSaved">-</strong>
+                                </div>
+
+                            </div>
+
+                            <button class="download-button" id="downloadButton" type="button">
+                                Download Compressed Image
+                            </button>
+
+                        </div>
+
+                        <!-- BATCH COMPRESSION -->
+
+                        <section class="batch-section" id="batchSection">
+
+                            <div class="batch-header">
+                                <h2>Batch Image Compression</h2>
+                                <p>Compress multiple images at once.</p>
+                            </div>
+
+                            <input
+                                type="file"
+                                id="batchImageInput"
+                                accept="image/jpeg,image/png,image/webp"
+                                multiple
+                                hidden
+                            >
+
+                            <div class="batch-drop-zone" id="batchDropZone">
+                                <div class="batch-drop-icon">📁</div>
+                                <h3>Drag & Drop Images</h3>
+                                <p>or click below to browse files</p>
+
+                                <button type="button" class="batch-upload-button" id="batchUploadButton">
+                                    Select Images
+                                </button>
+
+                                <span class="batch-drop-formats">
+                                    JPG, PNG, WEBP · Maximum 20 images
+                                </span>
+                            </div>
+
+                            <div class="batch-file-list" id="batchFileList"></div>
+
+                            <button
+                                type="button"
+                                class="batch-clear-button"
+                                id="batchClearButton"
+                            >
+                                Clear All
+                            </button>
+
+                            <button
+                                type="button"
+                                class="batch-compress-button"
+                                id="batchCompressButton"
+                                disabled
+                            >
+                                Compress All Images
+                            </button>
+
+                            <div class="batch-progress" id="batchProgress" hidden>
+                                <p id="batchProgressText">Preparing images...</p>
+                                <div class="batch-progress-track">
+                                    <div class="batch-progress-fill" id="batchProgressFill"></div>
+                                </div>
+                            </div>
+
+                            <button
+                                type="button"
+                                class="batch-download-button"
+                                id="batchDownloadButton"
+                                hidden
+                            >
+                                Download ZIP
+                            </button>
+
+                        </section>
+
+                        <!-- COMPRESSION HISTORY -->
+
+                        <section class="history-section" id="historySection">
+                            <div class="history-stats">
+
+                                <div class="stat-card">
+                                    <span class="stat-icon">🖼️</span>
+                                    <span class="stat-value" id="statTotal">0</span>
+                                    <span class="stat-label">Images processed</span>
+                                </div>
+
+                                <div class="stat-card">
+                                    <span class="stat-icon">💾</span>
+                                    <span class="stat-value" id="statSaved">0 MB</span>
+                                    <span class="stat-label">Space saved</span>
+                                </div>
+
+                                <div class="stat-card">
+                                    <span class="stat-icon">📊</span>
+                                    <span class="stat-value" id="statAverage">0%</span>
+                                    <span class="stat-label">Average compression</span>
+                                </div>
+
+                            </div>
+                            <div class="history-header">
+                                <h2>Compression History</h2>
+                                <button type="button" id="clearHistory">
+                                    Clear history
+                                </button>
+                            </div>
+
+                            <div class="history-list" id="historyList">
+                                <p class="history-empty">
+                                    No compression history yet.
+                                </p>
+                            </div>
+                        </section>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container footer-container">
+
+            <a href="index.html" class="logo">
+                File<span>Fix</span>
+            </a>
+
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-of-service.html">Terms of Service</a>
+                <a href="about.html">About Us</a>
+                <a href="mailto:filefix.contact@gmail.com">Contact</a>
+            </div>
+
+            <p>© 2026 FileFix. All rights reserved.</p>
+
+        </div>
+
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="js/image-compressor.js"></script>
+
+</body>
+</html>
