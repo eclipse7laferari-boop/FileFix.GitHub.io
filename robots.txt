@@ -1,0 +1,5 @@
+
+User-agent: *
+Allow: /
+
+Sitemap: https://eclipse7laferari-boop.github.io/FileFix/sitemap.xml
